@@ -176,6 +176,54 @@ curl -s http://localhost:8088
 
 ---
 
+---
+
+## Evidências (para entrega)
+
+Tire prints (ou cole o output) de:
+
+1. **Volume criado**
+   ```bash
+   docker volume ls | grep lab4_pgdata
+   ```
+
+2. **Container do Postgres rodando**
+   ```bash
+   docker ps | grep lab4-postgres
+   ```
+   > Se você já removeu o primeiro container, pode mostrar o segundo:
+   > ```bash
+   > docker ps | grep lab4-postgres-2
+   > ```
+
+3. **Dado criado no banco (antes de remover o container)**
+   - Print da saída do `SELECT` do **Checkpoint C** (dentro do `psql`):
+     ```sql
+     SELECT * FROM alunos;
+     ```
+
+4. **Prova de persistência (depois de remover e recriar)**
+   ```bash
+   docker exec -it lab4-postgres-2 psql -U postgres -d labdb -c "SELECT * FROM alunos;"
+   ```
+
+**Opcional (extra — Bind mount):**
+- Print do `curl` **antes e depois** de editar o `index.html` no host:
+  ```bash
+  curl -s http://localhost:8088
+  ```
+
+Sugestão de pasta para organizar:
+
+- `evidencias/` com:
+  - `01-volume.png`
+  - `02-ps.png`
+  - `03-select-antes.png`
+  - `04-select-depois.png`
+  - (opcional) `05-bind-before.png`
+  - (opcional) `06-bind-after.png`
+
+
 ## 7) Limpeza
 
 ```bash
